@@ -1,9 +1,14 @@
-import express from 'express';
+import express, { request, response } from 'express';
+import { readCredentials } from './utils/credentials';
 
 const app = express();
 const port = 3000;
 
-// creates route
+app.get('/api/credentials', async (_request, response) => {
+  response.type('json').send(await readCredentials());
+});
+
+// creates route. Define '/' route last
 app.get('/', (_request, response) => {
   response.send('Hello Louie!');
 });

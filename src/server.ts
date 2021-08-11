@@ -1,5 +1,5 @@
 import express, { request, response } from 'express';
-import { readCredentials } from './utils/credentials';
+import { getCredential, readCredentials } from './utils/credentials';
 
 const app = express();
 const port = 3000;
@@ -9,9 +9,15 @@ app.get('/api/credentials', async (_request, response) => {
   response.type('json').send(await readCredentials());
 });
 
-app.get('/api/credentials/:service', (request, response) => {
+app.get('/api/credentials/:service', async (request, response) => {
   const { service } = request.params;
-  response.send(`Are you searching for ${service}?`);
+  try {
+    const credential = await await getCredential(service);
+    response.status(200).type('json').send(credential);
+  } catch (error) {
+    console.log(error);
+    response.status(404).send(`couldn not find service ${service}`);
+  }
 });
 
 // creates route. Define '/' route last

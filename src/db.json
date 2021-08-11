@@ -1,7 +1,19 @@
 {
   "credentials": [
-    { "service": "google", "username": "Fosy", "password": "abc12345" },
-    { "service": "instagram", "username": "Fosy", "password": "abc12345" },
-    { "service": "twitter", "username": "Fosy", "password": "abc12345" }
+    {
+      "service": "google",
+      "username": "Fosy",
+      "password": "abc12345"
+    },
+    {
+      "service": "instagram",
+      "username": "Fosy",
+      "password": "abc12345"
+    },
+    {
+      "service": "twitter",
+      "username": "Fosy",
+      "password": "abc12345"
+    }
   ]
 }

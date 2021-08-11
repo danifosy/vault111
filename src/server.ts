@@ -1,4 +1,4 @@
-import express, { request, response } from 'express';
+import express from 'express';
 import {
   getCredential,
   readCredentials,
@@ -36,6 +36,7 @@ app.post('/api/credentials', async (request, response) => {
 });
 
 app.delete('/api/credentials/:service', async (request, response) => {
+  //pulls "service" from url
   const { service } = request.params;
   await deleteCredential(service);
   response.status(200).send('Successfully deleted');

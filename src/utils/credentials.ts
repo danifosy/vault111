@@ -32,19 +32,19 @@ export async function addCredential(credential: Credential): Promise<void> {
     credentials: newCredentials,
   };
   // writes new credential as a string bc it expects a string
-  await writeFile('src/db.json', JSON.stringify(newDB));
+  await writeFile('src/db.json', JSON.stringify(newDB, null, 2));
 }
 
 export async function deleteCredential(service: string): Promise<void> {
+  //reads exisiting creds
   const credentials = await readCredentials();
+  //modifies credentials so that it's everything except the filtered cred
   const filteredCredentials = credentials.filter(
     (credential) => credential.service !== service
   );
+  //new creds without the filtered cred
   const newDB: DB = {
     credentials: filteredCredentials,
   };
-  await writeFile('src/db.json', JSON.stringify(newDB));
-  //write filter that finds service
-  //delete the one with the name
-  //leave all the others
+  await writeFile('src/db.json', JSON.stringify(newDB, null, 2));
 }

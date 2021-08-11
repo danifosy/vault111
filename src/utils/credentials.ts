@@ -22,8 +22,8 @@ export async function getCredential(service: string): Promise<Credential> {
   return credential;
 }
 
-export async function addCredential(credential: Credential) {
-  // waits for function above and saves in var
+export async function addCredential(credential: Credential): Promise<void> {
+  // reads all creds from db
   const credentials = await readCredentials();
   // spreads all old creds and adds new creds and creates array of them
   const newCredentials = [...credentials, credential];
@@ -33,4 +33,18 @@ export async function addCredential(credential: Credential) {
   };
   // writes new credential as a string bc it expects a string
   await writeFile('src/db.json', JSON.stringify(newDB));
+}
+
+export async function deleteCredential(service: string): Promise<void> {
+  const credentials = await readCredentials();
+  const filteredCredentials = credentials.filter(
+    (credential) => credential.service !== service
+  );
+  const newDB: DB = {
+    credentials: filteredCredentials,
+  };
+  await writeFile('src/db.json', JSON.stringify(newDB));
+  //write filter that finds service
+  //delete the one with the name
+  //leave all the others
 }

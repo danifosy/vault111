@@ -1,11 +1,18 @@
 ### get all credentials
 GET http://localhost:3000/api/credentials
 
+### get one credential
+GET http://localhost:3000/api/credentials/google
+
 ### post credential
 POST http://localhost:3000/api/credentials
 Content-Type: application/json
+
 {
     "service": "mySpace",
     "username": "Fosy",
     "passwords": "123"
 }
+
+### delete credential
+DELETE http://localhost:3000/api/credentials/mySpace

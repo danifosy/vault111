@@ -21,6 +21,8 @@ app.get('/api/credentials', async (_request, response) => {
   }
 });
 
+app.post('api/credentials');
+
 app.get('/api/credentials/:service', async (request, response) => {
   const { service } = request.params;
   try {

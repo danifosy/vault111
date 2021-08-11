@@ -1,0 +1,11 @@
+### get all credentials
+GET http://localhost:3000/api/credentials
+
+### post credential
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+{
+    "service": "mySpace",
+    "username": "Fosy",
+    "passwords": "123"
+}

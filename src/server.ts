@@ -5,17 +5,29 @@ const app = express();
 const port = 3000;
 
 app.get('/api/credentials', async (_request, response) => {
-  //to-do: put function in var and test if response!
-  response.type('json').send(await readCredentials());
+  //tries to run the function and open the site
+  try {
+    const credentials = await readCredentials();
+    //response.json is a shorthand but I won't be able to read it later.
+    response.type('json').send(credentials);
+    // if not possible shows error in console and posts error message in browser
+  } catch (error) {
+    console.error(error);
+    {
+      response
+        .status(500)
+        .send(`Internal Server Error. Please try again later`);
+    }
+  }
 });
 
 app.get('/api/credentials/:service', async (request, response) => {
   const { service } = request.params;
   try {
-    const credential = await await getCredential(service);
+    const credential = await getCredential(service);
     response.status(200).type('json').send(credential);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     response.status(404).send(`couldn not find service ${service}`);
   }
 });

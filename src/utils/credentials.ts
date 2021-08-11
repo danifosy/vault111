@@ -1,4 +1,5 @@
 import { readFile } from 'fs/promises';
+import { writeFile } from 'fs/promises';
 import { Credential, DB } from '../types';
 
 export async function readCredentials(): Promise<Credential[]> {
@@ -19,4 +20,17 @@ export async function getCredential(service: string): Promise<Credential> {
   }
 
   return credential;
+}
+
+export async function addCredential(credential: Credential) {
+  // waits for function above and saves in var
+  const credentials = await readCredentials();
+  // spreads all old creds and adds new creds and creates array of them
+  const newCredentials = [...credentials, credential];
+  // the key we fill with information. in this key we give all our info
+  const newDB: DB = {
+    credentials: newCredentials,
+  };
+  // writes new credential as a string bc it expects a string
+  await writeFile('src/db.json', JSON.stringify(newDB));
 }

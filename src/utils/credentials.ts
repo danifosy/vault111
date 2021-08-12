@@ -1,5 +1,5 @@
-import { readFile } from 'fs/promises';
-import { writeFile } from 'fs/promises';
+import { readFile, writeFile } from 'fs/promises';
+
 import { Credential, DB } from '../types';
 
 export async function readCredentials(): Promise<Credential[]> {

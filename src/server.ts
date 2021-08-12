@@ -14,19 +14,16 @@ const port = 3000;
 app.use(express.json());
 
 app.get('/api/credentials', async (_request, response) => {
-  //tries to run the function and open the site
+  //tries to run the function and open the sitec
   try {
     const credentials = await readCredentials();
     //response.json is a shorthand but I won't be able to read it later.
-    response.type('json').send(credentials);
+    response.json(credentials);
     // if not possible shows error in console and posts error message in browser
   } catch (error) {
     console.error(error);
-    {
-      response
-        .status(500)
-        .send(`Internal Server Error. Please try again later`);
-    }
+
+    response.status(500).send(`Internal Server Error. Please try again later`);
   }
 });
 
@@ -41,9 +38,13 @@ app.put('/api/credentials/:service', async (request, response) => {
   // the {} is destructuring
   const { service } = request.params;
   const credential: Credential = request.body;
-  //TODO: add try/catch
-  await updateCredential(service, credential);
-  response.status(200).json('Successfully updated');
+  try {
+    await updateCredential(service, credential);
+    response.status(200).json('Successfully updated');
+  } catch (error) {
+    console.error(error);
+    response.status(404).send(`Could not update service ${service}`);
+  }
 });
 
 app.delete('/api/credentials/:service', async (request, response) => {
@@ -57,10 +58,10 @@ app.get('/api/credentials/:service', async (request, response) => {
   const { service } = request.params;
   try {
     const credential = await getCredential(service);
-    response.status(200).type('json').send(credential);
+    response.status(200).json(credential);
   } catch (error) {
     console.error(error);
-    response.status(404).send(`couldn not find service ${service}`);
+    response.status(404).send(`Could not find service ${service}`);
   }
 });
 
@@ -71,5 +72,5 @@ app.get('/', (_request, response) => {
 
 //starts server
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Server listening at http://localhost:${port}`);
 });

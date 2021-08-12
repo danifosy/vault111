@@ -1,9 +1,10 @@
-import express from 'express';
+import express, { request } from 'express';
 import {
   getCredential,
   readCredentials,
   addCredential,
   deleteCredential,
+  updateCredential,
 } from './utils/credentials';
 
 import { Credential } from './types';
@@ -33,6 +34,16 @@ app.post('/api/credentials', async (request, response) => {
   const credential: Credential = request.body;
   await addCredential(credential);
   response.status(200).send(credential);
+});
+
+//.put updates whole cred, .patch only parts
+app.put('/api/credentials/:service', async (request, response) => {
+  // the {} is destructuring
+  const { service } = request.params;
+  const credential: Credential = request.body;
+  //TODO: add try/catch
+  await updateCredential(service, credential);
+  response.status(200).json('Successfully updated');
 });
 
 app.delete('/api/credentials/:service', async (request, response) => {

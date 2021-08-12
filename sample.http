@@ -16,3 +16,13 @@ Content-Type: application/json
 
 ### delete credential
 DELETE http://localhost:3000/api/credentials/mySpace
+
+### update credential
+PUT http://localhost:3000/api/credentials/mySpace
+Content-Type: application/json
+
+{
+    "service": "mySpace",
+    "username": "Fosy",
+    "passwords": "123"
+}

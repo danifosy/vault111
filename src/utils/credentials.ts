@@ -13,7 +13,10 @@ export async function readCredentials(): Promise<Credential[]> {
   return credentials;
 }
 
-export async function getCredential(serviceName: string): Promise<Credential> {
+export async function getCredential(
+  serviceName: string,
+  key: string
+): Promise<Credential> {
   // calls readCredentials() function and saves the array in var
   const credentials = await readCredentials();
   // takes the cred data and finds the fitting service according to the service we give into the function
@@ -24,17 +27,20 @@ export async function getCredential(serviceName: string): Promise<Credential> {
   if (!credential) {
     throw new Error(`No credential found for service: ${serviceName}`);
   }
-  const decryptedCredential = decryptCredential(credential);
+  const decryptedCredential = decryptCredential(credential, key);
 
   return decryptedCredential;
 }
 
-export async function addCredential(credential: Credential): Promise<void> {
+export async function addCredential(
+  credential: Credential,
+  key: string
+): Promise<void> {
   // reads all creds from db
   const credentials = await readCredentials();
 
   // spreads all old creds and adds new creds and creates array of them
-  const newCredentials = [...credentials, encryptCredential(credential)];
+  const newCredentials = [...credentials, encryptCredential(credential, key)];
 
   // the key we fill with information. in this key we give all our info
   const newDB: DB = {
@@ -61,7 +67,8 @@ export async function deleteCredential(serviceName: string): Promise<void> {
 
 export async function updateCredential(
   serviceName: string,
-  credential: Credential
+  credential: Credential,
+  key: string
 ): Promise<void> {
   //get all credentials
   const credentials = await readCredentials();
@@ -72,7 +79,7 @@ export async function updateCredential(
   //overwrite DB
 
   const newDB: DB = {
-    credentials: [...filteredCredentials, encryptCredential(credential)],
+    credentials: [...filteredCredentials, encryptCredential(credential, key)],
   };
   await writeFile('src/db.json', JSON.stringify(newDB, null, 2));
 }

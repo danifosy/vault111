@@ -9,6 +9,7 @@ import {
 import type { Credential } from './types';
 import { validateMasterpassword } from './utils/validation';
 import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 const port = 3000;

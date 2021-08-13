@@ -6,9 +6,9 @@ import {
   deleteCredential,
   updateCredential,
 } from './utils/credentials';
-import dotenv from 'dotenv';
 import type { Credential } from './types';
 import { validateMasterpassword } from './utils/validation';
+import dotenv from 'dotenv';
 
 const app = express();
 const port = 3000;
@@ -21,13 +21,13 @@ app.post('/api/credentials', async (request, response) => {
   const masterPassword = request.headers.authorization;
   if (!masterPassword) {
     //if no authorization header set, block request
-    response.status(400).send('Nope, kindly f*ck off');
+    response.status(400).send('Bad request');
     //use a return here so the function stops
     return;
     // runs function to check if pw is correct
   } else if (!(await validateMasterpassword(masterPassword))) {
     // if not, access denied.
-    response.status(401).send('You shall not pass');
+    response.status(401).send('Unauthorized');
     return;
   }
   //if everything is okay, the new cred is stored

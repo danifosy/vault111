@@ -9,11 +9,11 @@ import {
 import type { Credential } from './types';
 import { validateMasterpassword } from './utils/validation';
 import dotenv from 'dotenv';
-import { connectDatabase } from './utils/database';
 dotenv.config();
+import { connectDatabase } from './utils/database';
 
 if (!process.env.MONGODB_URL) {
-  throw new Error('No mongodb');
+  throw new Error('No mongoDB');
 }
 
 const app = express();

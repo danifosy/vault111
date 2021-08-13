@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'fs/promises';
 import type { Credential, DB } from '../types';
 import { encryptCredential, decryptCredential } from './crypto';
+import { addCredentialToDB } from './database';
 
 // reads db.json and turns them into usable data
 export async function readCredentials(): Promise<Credential[]> {
@@ -36,6 +37,10 @@ export async function addCredential(
   credential: Credential,
   key: string
 ): Promise<void> {
+  const encryptedCredential = encryptCredential(credential, key);
+  return addCredentialToDB(encryptedCredential).then();
+
+  /*
   // reads all creds from db
   const credentials = await readCredentials();
 
@@ -49,6 +54,7 @@ export async function addCredential(
 
   // writes new credential as a string bc it expects a string
   await writeFile('src/db.json', JSON.stringify(newDB, null, 2));
+  */
 }
 
 export async function deleteCredential(serviceName: string): Promise<void> {

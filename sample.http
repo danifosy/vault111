@@ -1,17 +1,22 @@
 ### get all credentials
 GET http://localhost:3000/api/credentials
 
-### get one credential
-GET http://localhost:3000/api/credentials/google
+### get one credential without authorization
+GET http://localhost:3000/api/credentials/mySpace
+
+### get one credential with wrong authorization
+GET http://localhost:3000/api/credentials/mySpace
+Authorization: nope
 
 ### post credential
 POST http://localhost:3000/api/credentials
 Content-Type: application/json
+Authorization: {{$dotenv MASTERPASSWORD}}
 
 {
     "service": "mySpace",
     "username": "Fosy",
-    "passwords": "123"
+    "password": "123"
 }
 
 ### delete credential
@@ -20,9 +25,15 @@ DELETE http://localhost:3000/api/credentials/mySpace
 ### update credential
 PUT http://localhost:3000/api/credentials/mySpace
 Content-Type: application/json
+Authorization: {{$dotenv MASTERPASSWORD}}
 
 {
     "service": "mySpace",
     "username": "Fosy",
-    "passwords": "123"
+    "password": "123456"
 }
+
+### get single credential
+
+GET http://localhost:3000/api/credentials/mySpace
+Authorization: {{$dotenv MASTERPASSWORD}}

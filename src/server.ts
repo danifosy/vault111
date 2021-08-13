@@ -9,7 +9,12 @@ import {
 import type { Credential } from './types';
 import { validateMasterpassword } from './utils/validation';
 import dotenv from 'dotenv';
+import { connectDatabase } from './utils/database';
 dotenv.config();
+
+if (!process.env.MONGODB_URL) {
+  throw new Error('No mongodb');
+}
 
 const app = express();
 const port = 3000;
@@ -109,6 +114,8 @@ app.get('/', (_request, response) => {
 });
 
 //starts server
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+connectDatabase(process.env.MONGODB_URL).then(() =>
+  app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+  })
+);

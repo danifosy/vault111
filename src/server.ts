@@ -61,10 +61,10 @@ app.put('/api/credentials/:service', async (request, response) => {
   const credential: Credential = request.body;
   const masterPassword = request.headers.authorization;
   if (!masterPassword) {
-    response.status(400).send('Nope, kindly f*ck off');
+    response.status(400).send('Bad request');
     return;
   } else if (!(await validateMasterpassword(masterPassword))) {
-    response.status(401).send('You shall not pass');
+    response.status(401).send('Unauthorized');
     return;
   }
   try {
@@ -93,10 +93,10 @@ app.get('/api/credentials/:service', async (request, response) => {
   const masterPassword = request.headers.authorization;
   // checks if there is a pw in header
   if (!masterPassword) {
-    response.status(400).send('Nope, kindly f*ck off');
+    response.status(400).send('Bad request');
     return;
   } else if (!(await validateMasterpassword(masterPassword))) {
-    response.status(401).send('You shall not pass');
+    response.status(401).send('Unauthorized');
     return;
   }
   try {

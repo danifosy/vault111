@@ -1,4 +1,4 @@
-import { Collection, InsertOneResult, MongoClient } from 'mongodb';
+import { Collection, MongoClient } from 'mongodb';
 import { Credential } from '../types';
 
 let client: MongoClient;
@@ -14,11 +14,4 @@ export function getCollection<T>(name: string): Collection<T> {
 
 export function getCredentialCollection(): Collection<Credential> {
   return getCollection<Credential>('credentials');
-}
-
-export async function addCredentialToDB(
-  credential: Credential
-): Promise<InsertOneResult<Credential>> {
-  const credentialCollection = await getCredentialCollection();
-  return credentialCollection.insertOne(credential);
 }

@@ -41,11 +41,19 @@ app.post('/api/credentials', async (request, response) => {
   response.status(200).send(credential);
 });
 
-app.get('/api/credentials', async (_request, response) => {
+app.get('/api/credentials', async (request, response) => {
   //tries to run the function and open the site
   try {
-    const credentials = await readCredentials();
+    const masterPassword = request.headers.authorization;
     //response.json is a shorthand but I won't be able to read it later.
+    if (!masterPassword) {
+      response.status(400).send('Authorization header missing');
+      return;
+    } else if (!(await validateMasterpassword(masterPassword))) {
+      response.status(401).send('Unauthorized request');
+      return;
+    }
+    const credentials = await readCredentials(masterPassword);
     response.json(credentials);
     // if not possible shows error in console and posts error message in browser
   } catch (error) {

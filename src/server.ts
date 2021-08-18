@@ -10,6 +10,11 @@ import type { Credential } from './types';
 import { validateMasterpassword } from './utils/validation';
 import dotenv from 'dotenv';
 dotenv.config();
+import { connectDatabase } from './utils/database';
+
+if (!process.env.MONGODB_URL) {
+  throw new Error('No mongoDB');
+}
 
 const app = express();
 const port = 3000;
@@ -36,11 +41,19 @@ app.post('/api/credentials', async (request, response) => {
   response.status(200).send(credential);
 });
 
-app.get('/api/credentials', async (_request, response) => {
+app.get('/api/credentials', async (request, response) => {
   //tries to run the function and open the site
   try {
-    const credentials = await readCredentials();
+    const masterPassword = request.headers.authorization;
     //response.json is a shorthand but I won't be able to read it later.
+    if (!masterPassword) {
+      response.status(400).send('Authorization header missing');
+      return;
+    } else if (!(await validateMasterpassword(masterPassword))) {
+      response.status(401).send('Unauthorized request');
+      return;
+    }
+    const credentials = await readCredentials(masterPassword);
     response.json(credentials);
     // if not possible shows error in console and posts error message in browser
   } catch (error) {
@@ -56,10 +69,10 @@ app.put('/api/credentials/:service', async (request, response) => {
   const credential: Credential = request.body;
   const masterPassword = request.headers.authorization;
   if (!masterPassword) {
-    response.status(400).send('Nope, kindly f*ck off');
+    response.status(400).send('Bad request');
     return;
   } else if (!(await validateMasterpassword(masterPassword))) {
-    response.status(401).send('You shall not pass');
+    response.status(401).send('Unauthorized');
     return;
   }
   try {
@@ -88,10 +101,10 @@ app.get('/api/credentials/:service', async (request, response) => {
   const masterPassword = request.headers.authorization;
   // checks if there is a pw in header
   if (!masterPassword) {
-    response.status(400).send('Nope, kindly f*ck off');
+    response.status(400).send('Bad request');
     return;
   } else if (!(await validateMasterpassword(masterPassword))) {
-    response.status(401).send('You shall not pass');
+    response.status(401).send('Unauthorized');
     return;
   }
   try {
@@ -109,6 +122,8 @@ app.get('/', (_request, response) => {
 });
 
 //starts server
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+connectDatabase(process.env.MONGODB_URL).then(() =>
+  app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+  })
+);

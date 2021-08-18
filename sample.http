@@ -1,5 +1,6 @@
 ### get all credentials
 GET http://localhost:3000/api/credentials
+Authorization: {{$dotenv MASTERPASSWORD}}
 
 ### get one credential without authorization
 GET http://localhost:3000/api/credentials/mySpace
@@ -15,6 +16,17 @@ Authorization: {{$dotenv MASTERPASSWORD}}
 
 {
     "service": "mySpace",
+    "username": "Fosy",
+    "password": "123"
+}
+
+### post new credential
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+Authorization: {{$dotenv MASTERPASSWORD}}
+
+{
+    "service": "twitter",
     "username": "Fosy",
     "password": "123"
 }

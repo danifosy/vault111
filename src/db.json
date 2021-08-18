@@ -14,6 +14,11 @@
       "service": "twitter",
       "username": "Fosy",
       "password": "abc12345"
+    },
+    {
+      "service": "mySpace",
+      "username": "Fosy",
+      "password": "U2FsdGVkX1+m4Q5DUgJI0KuFpd7k+3qr"
     }
   ]
 }

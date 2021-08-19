@@ -34,11 +34,6 @@ export default function Dashboard(): JSX.Element {
       </p>
       <div className={styles.container}>
         <input
-          type="Username"
-          placeholder="Username"
-          className={styles.containerItems}
-        />
-        <input
           type="Masterpassword"
           placeholder="Masterpassword"
           className={styles.containerItems}

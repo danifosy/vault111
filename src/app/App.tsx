@@ -3,11 +3,7 @@ import React from 'react';
 import Dashboard from './pages/dashboard/Dashboard';
 
 function App(): JSX.Element {
-  return (
-    <>
-      <Dashboard />
-    </>
-  );
+  return <Dashboard />;
 }
 
 export default App;

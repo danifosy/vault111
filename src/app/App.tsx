@@ -8,8 +8,14 @@ import AddCredential from './pages/AddCredentials/AddCredentials';
 
 function App(): JSX.Element {
   return (
-    <>
+    <main>
+      <img
+        src="assets/backgroundPicture.jpg"
+        alt=""
+        className={styles.headerBackground}
+      />
       <h1 className={styles.header}>Password manager</h1>
+
       <BrowserRouter>
         <Switch>
           <Route path="/password/:service">
@@ -26,7 +32,7 @@ function App(): JSX.Element {
           </Route>
         </Switch>
       </BrowserRouter>
-    </>
+    </main>
   );
 }
 

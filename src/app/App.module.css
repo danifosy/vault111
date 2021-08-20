@@ -1,14 +1,26 @@
 .App {
   text-align: center;
-  height: 100vh;
 }
 
 .header {
-  margin-top: 0;
-  background: rgb(27, 24, 92);
-  background: linear-gradient(23deg, #1b185c 0%, #7262ac 49%, #00d4ff 100%);
+  padding-top: 2em;
   text-align: center;
-  padding: 1em;
-  font-size: 3em;
+  width: 100%;
+  margin: 0 auto;
   color: white;
+  font-size: 5em;
+  letter-spacing: 10px;
+  top: 0;
+  position: absolute;
+  text-shadow: 5px 10px #2887c260, 2px 3px #4a8166;
+}
+
+.headerBackground {
+  width: 100%;
+  top: 0;
+  z-index: 0;
+}
+
+main {
+  background: black;
 }

@@ -15,7 +15,7 @@ Content-Type: application/json
 Authorization: {{$dotenv MASTERPASSWORD}}
 
 {
-    "service": "mySpace",
+    "service": "Google",
     "username": "Fosy",
     "password": "123"
 }

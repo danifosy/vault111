@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import type { Credential } from '../../../types';
+import CredentialCard from '../../components/CredentialCard/CredentialCard';
 
 export default function Dashboard(): JSX.Element {
   const [credentials, setCredentials] = useState<Credential[]>([]);
@@ -32,11 +34,7 @@ export default function Dashboard(): JSX.Element {
       <h2 className={styles.subHeader}>
         Your personal password manager powered by caffeine and sweat!
       </h2>
-      <p className={styles.text}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ipsam.
-        Adipisci quos sint mollitia voluptatem fugiat, eligendi quas optio minus
-        officia quam deserunt voluptate aut nobis cum corrupti assumenda quasi!
-      </p>
+
       <div className={styles.container}>
         <input
           type="password"
@@ -49,12 +47,14 @@ export default function Dashboard(): JSX.Element {
       </div>
       {credentials.length !== 0 &&
         credentials.map((credential) => (
-          <div>
-            <p>{credential.service}</p>
-            <p>{credential.username}</p>
-            <p>{credential.password}</p>
-          </div>
+          <CredentialCard credentialData={credential} />
         ))}
+      <Link to="/addCredential">
+        <img src="assets/addButton.svg" className={styles.addButton} />
+      </Link>
+      <Link to="/searchCredential">
+        <img src="assets/searchButton.svg" className={styles.searchButton} />
+      </Link>
     </main>
   );
 }

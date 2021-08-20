@@ -1,16 +1,15 @@
 .header {
   margin-top: 0;
   background: rgb(27, 24, 92);
-  background: linear-gradient(
-    23deg,
-    rgba(27, 24, 92, 1) 0%,
-    rgba(114, 98, 172, 1) 49%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: linear-gradient(23deg, #1b185c 0%, #7262ac 49%, #00d4ff 100%);
   text-align: center;
   padding: 1em;
   font-size: 3em;
   color: white;
+}
+
+main {
+  height: 100vh;
 }
 
 .subHeader {
@@ -49,4 +48,20 @@
     rgba(114, 98, 172, 1) 49%,
     rgba(0, 212, 255, 1) 100%
   );
+}
+
+.addButton {
+  position: sticky;
+  top: 2em;
+  left: 20em;
+  border: 0;
+  background: 0%;
+}
+
+.searchButton {
+  position: sticky;
+  top: 2em;
+  left: 2em;
+  border: 0;
+  background: 0;
 }

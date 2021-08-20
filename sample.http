@@ -1,16 +1,16 @@
 ### get all credentials
-GET http://localhost:3000/api/credentials
+GET http://localhost:3001/api/credentials
 Authorization: {{$dotenv MASTERPASSWORD}}
 
 ### get one credential without authorization
-GET http://localhost:3000/api/credentials/mySpace
+GET http://localhost:3001/api/credentials/mySpace
 
 ### get one credential with wrong authorization
-GET http://localhost:3000/api/credentials/mySpace
+GET http://localhost:3001/api/credentials/mySpace
 Authorization: nope
 
 ### post credential
-POST http://localhost:3000/api/credentials
+POST http://localhost:3001/api/credentials
 Content-Type: application/json
 Authorization: {{$dotenv MASTERPASSWORD}}
 
@@ -21,7 +21,7 @@ Authorization: {{$dotenv MASTERPASSWORD}}
 }
 
 ### post new credential
-POST http://localhost:3000/api/credentials
+POST http://localhost:3001/api/credentials
 Content-Type: application/json
 Authorization: {{$dotenv MASTERPASSWORD}}
 
@@ -32,10 +32,10 @@ Authorization: {{$dotenv MASTERPASSWORD}}
 }
 
 ### delete credential
-DELETE http://localhost:3000/api/credentials/mySpace
+DELETE http://localhost:3001/api/credentials/mySpace
 
 ### update credential
-PUT http://localhost:3000/api/credentials/mySpace
+PUT http://localhost:3001/api/credentials/mySpace
 Content-Type: application/json
 Authorization: {{$dotenv MASTERPASSWORD}}
 
@@ -47,5 +47,5 @@ Authorization: {{$dotenv MASTERPASSWORD}}
 
 ### get single credential
 
-GET http://localhost:3000/api/credentials/mySpace
+GET http://localhost:3001/api/credentials/mySpace
 Authorization: {{$dotenv MASTERPASSWORD}}

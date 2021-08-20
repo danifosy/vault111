@@ -27,7 +27,7 @@ export function decryptCredential(
   ).toString(CryptoJS.enc.Utf8);
   const decryptedCredential = {
     ...credential,
-    decryptedPassword,
+    password: decryptedPassword,
   };
   return decryptedCredential;
 }

@@ -47,10 +47,14 @@ export default function Dashboard(): JSX.Element {
     return (
       <main>
         <h2 className={styles.subHeader}>
-          Your personal password manager powered by caffeine and sweat!
+          Your personal Password Manager powered by caffeine and sweat!
         </h2>
-
-        <div className={styles.container}>
+        <p className={styles.text}>
+          Security of sensitive data is one of the most important topics ever
+          since the times of Alan Turing. This Password Manager will not help
+          with that, sorry.
+        </p>
+        <label className={styles.container}>
           <input
             type="password"
             placeholder="Masterpassword"
@@ -59,7 +63,7 @@ export default function Dashboard(): JSX.Element {
             onChange={(event) => setMasterpassword(event.target.value)}
           />
           <button className={styles.containerButton}>Login</button>
-        </div>
+        </label>
       </main>
     );
   }

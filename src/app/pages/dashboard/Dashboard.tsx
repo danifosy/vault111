@@ -18,8 +18,8 @@ export default function Dashboard(): JSX.Element {
           Authorization: masterpassword,
         },
       });
-      const credentials = await response.json();
-      setCredentials(credentials);
+      const credentialsResult = await response.json();
+      setCredentials(credentialsResult);
     }
     fetchCredentials();
     if (!masterpassword) {

@@ -3,14 +3,14 @@
   padding: 0.5em;
   margin: 1em;
   font-size: 1.7em;
-  color: #8f9d97;
+  color: var(--color-primary);
 }
 
 .text {
   margin-left: 2em;
   margin-right: 2em;
   text-align: center;
-  color: #909fb690;
+  color: var(--color-secondary);
 }
 
 .container {
@@ -22,7 +22,7 @@
 
 .containerItems {
   border: 0;
-  border-bottom: 0.1em solid #8f9d97;
+  border-bottom: 0.1em solid var(--color-primary);
   outline: 0;
   font-size: 1.3rem;
   color: #8f9d97;

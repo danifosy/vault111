@@ -24,23 +24,25 @@
   border: 0;
   border-bottom: 0.1em solid var(--color-primary);
   outline: 0;
-  font-size: 1.3rem;
-  color: #8f9d97;
-  padding: 1em 0;
+  font-size: 1.6em;
+  color: var(--color-primary);
+  padding: 0.4em;
   background: transparent;
   margin-bottom: 1.5em;
+  font-family: var(--font-family);
 }
 
-.containerItems[input='password']:focus {
-  border: solid white 2em;
+.containerItems:focus {
+  border: 0.14em solid var(--color-primary);
 }
 
 .containerButton {
   padding: 1em 4em 1em 4em;
+  color: var(--button-color-text);
   background-color: var(--button-color-bg);
-  color: var(button-color-text);
+  font-family: var(--font-family);
   border: none;
-  font-size: inherit;
+  font-size: 1.3em;
   cursor: pointer;
   text-transform: uppercase;
   -webkit-transition: all 0.3s;

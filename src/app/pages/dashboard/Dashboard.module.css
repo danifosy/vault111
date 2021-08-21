@@ -37,8 +37,8 @@
 
 .containerButton {
   padding: 1em 4em 1em 4em;
-  background-color: #3a537e;
-  color: #d0dad6;
+  background-color: var(--button-color-bg);
+  color: var(button-color-text);
   border: none;
   font-size: inherit;
   cursor: pointer;

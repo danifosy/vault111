@@ -6,6 +6,11 @@
 
 body {
   margin: 0;
-  font-family: 'Yanone Kaffeesatz', sans-serif;
   background-color: black;
+  font-family: Yanone Kaffeesatz, sans-serif;
+}
+
+:root {
+  --color-primary: #8f9d97;
+  --color-secondary: #909fb690;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Credential } from '../../../types';
+import styles from './AddCredentials.module.css';
 
 const emptyCredential = {
   service: '',
@@ -30,6 +31,7 @@ export default function AddCredential(): JSX.Element {
   return (
     <>
       <form
+        className={styles.addNewForm}
         onSubmit={(event) => {
           event?.preventDefault();
           submit();
@@ -38,6 +40,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a service</p>
         <label>
           <input
+            className={styles.addNewForm_input}
             type="text"
             value={credential.service}
             onChange={(event) =>
@@ -48,6 +51,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a username</p>
         <label>
           <input
+            className={styles.addNewForm_input}
             type="text"
             value={credential.username}
             onChange={(event) =>
@@ -58,7 +62,8 @@ export default function AddCredential(): JSX.Element {
         <p>Add a password</p>
         <label>
           <input
-            type="text"
+            className={styles.addNewForm_input}
+            type="password"
             value={credential.password}
             onChange={(event) =>
               setCredential({ ...credential, password: event.target.value })
@@ -68,12 +73,15 @@ export default function AddCredential(): JSX.Element {
         <p>Please enter master password</p>
         <label>
           <input
+            className={styles.addNewForm_input}
             type="password"
             value={masterpassword}
             onChange={(event) => setMasterpassword(event.target.value)}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className={styles.addNewForm_button} type="submit">
+          Submit
+        </button>
       </form>
     </>
   );

@@ -50,18 +50,14 @@
   transition: all 0.3s;
 }
 
-.addButton {
+.buttonWrapper {
   position: sticky;
-  top: 2em;
-  left: 20em;
-  border: 0;
-  background: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1em;
 }
 
-.searchButton {
-  position: sticky;
-  top: 2em;
-  left: 2em;
-  border: 0;
-  background: 0;
+.addButton {
+  margin-left: 0.5em;
 }

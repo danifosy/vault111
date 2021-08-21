@@ -35,12 +35,17 @@ export default function Dashboard(): JSX.Element {
           credentials.map((credential) => (
             <CredentialCard credentialData={credential} />
           ))}
-        <Link to="/addCredential">
-          <img src="assets/addButton.svg" className={styles.addButton} />
-        </Link>
-        <Link to="/searchCredential">
-          <img src="assets/searchButton.svg" className={styles.searchButton} />
-        </Link>
+        <div className={styles.buttonWrapper}>
+          <Link to="/addCredential">
+            <img src="assets/addButton.svg" className={styles.addButton} />
+          </Link>
+          <Link to="/searchCredential">
+            <img
+              src="assets/searchButton.svg"
+              className={styles.searchButton}
+            />
+          </Link>
+        </div>
       </main>
     );
   } else {

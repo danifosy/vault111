@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { Credential } from '../../../types';
+import styles from './SearchCredential.module.css';
 
 import CredentialCard from '../../components/CredentialCard/CredentialCard';
 
@@ -8,37 +9,37 @@ export default function SearchCredential(): JSX.Element {
   const [masterpassword, setMasterpassword] = useState('');
   const [searchString, setSearchString] = useState('');
 
-  function searchCredential(serviceNameToLookFor: string) {
-    async function fetchCredentials() {
-      const response = await fetch('/api/credentials', {
-        method: 'GET',
-        headers: {
-          Authorization: masterpassword,
-        },
-      });
-      const credentialSearchResult: Credential[] = await response.json();
+  async function fetchCredentials(serviceNameToLookFor: string) {
+    const response = await fetch('/api/credentials', {
+      method: 'GET',
+      headers: {
+        Authorization: masterpassword,
+      },
+    });
+    const credentialSearchResult: Credential[] = await response.json();
 
-      const filteredCredentials = credentialSearchResult.filter(
-        (credential) => credential.service.indexOf(serviceNameToLookFor) !== -1
-      );
+    const filteredCredentials = credentialSearchResult.filter(
+      (credential) => credential.service.indexOf(serviceNameToLookFor) !== -1
+    );
 
-      setCredentials(filteredCredentials);
-    }
-    fetchCredentials();
+    setCredentials(filteredCredentials);
   }
 
   return (
     <>
       <form
+        className={styles.searchForm}
         onSubmit={(event) => {
           event?.preventDefault();
-          searchCredential(searchString);
+          fetchCredentials(searchString);
         }}
       >
         <label>
+          <p>enter the service</p>
           <input
+            required
+            className={styles.searchForm_input}
             type="text"
-            placeholder="search for a service"
             value={searchString}
             onChange={(event) => setSearchString(event.target.value)}
           />
@@ -47,13 +48,17 @@ export default function SearchCredential(): JSX.Element {
 
         <label>
           <input
+            className={styles.searchForm_input}
             type="password"
             value={masterpassword}
             onChange={(event) => setMasterpassword(event.target.value)}
           />
         </label>
-        <button type="submit">search</button>
+        <button type="submit" className={styles.searchForm_button}>
+          search
+        </button>
       </form>
+
       {credentials.length !== 0 &&
         credentials.map((credential) => (
           <CredentialCard credentialData={credential} />

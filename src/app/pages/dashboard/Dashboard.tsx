@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import type { Credential } from '../../../types';
+import CredentialCard from '../../components/CredentialCard/CredentialCard';
 
 export default function Dashboard(): JSX.Element {
   const [credentials, setCredentials] = useState<Credential[]>([]);
@@ -26,35 +28,43 @@ export default function Dashboard(): JSX.Element {
     // if you put variables into the [], the use effect function will always be called when the value of the vars changes
   }, [masterpassword]);
 
-  return (
-    <main>
-      <h1 className={styles.header}>Password manager</h1>
-      <h2 className={styles.subHeader}>
-        Your personal password manager powered by caffeine and sweat!
-      </h2>
-      <p className={styles.text}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ipsam.
-        Adipisci quos sint mollitia voluptatem fugiat, eligendi quas optio minus
-        officia quam deserunt voluptate aut nobis cum corrupti assumenda quasi!
-      </p>
-      <div className={styles.container}>
-        <input
-          type="password"
-          placeholder="Masterpassword"
-          className={styles.containerItems}
-          value={masterpassword}
-          onChange={(event) => setMasterpassword(event.target.value)}
-        />
-        <button className={styles.containerButton}>Login</button>
-      </div>
-      {credentials.length !== 0 &&
-        credentials.map((credential) => (
-          <div>
-            <p>{credential.service}</p>
-            <p>{credential.username}</p>
-            <p>{credential.password}</p>
-          </div>
-        ))}
-    </main>
-  );
+  if (credentials.length !== 0) {
+    return (
+      <main>
+        {credentials.length !== 0 &&
+          credentials.map((credential) => (
+            <CredentialCard credentialData={credential} />
+          ))}
+        <Link to="/addCredential">
+          <img src="assets/addButton.svg" className={styles.addButton} />
+        </Link>
+        <Link to="/searchCredential">
+          <img src="assets/searchButton.svg" className={styles.searchButton} />
+        </Link>
+      </main>
+    );
+  } else {
+    return (
+      <main>
+        <h2 className={styles.subHeader}>
+          Your personal Password Manager powered by caffeine and sweat!
+        </h2>
+        <p className={styles.text}>
+          Security of sensitive data is one of the most important topics ever
+          since the times of Alan Turing. This Password Manager will not help
+          with that, sorry.
+        </p>
+        <label className={styles.container}>
+          <input
+            type="password"
+            placeholder="Masterpassword"
+            className={styles.containerItems}
+            value={masterpassword}
+            onChange={(event) => setMasterpassword(event.target.value)}
+          />
+          <button className={styles.containerButton}>Login</button>
+        </label>
+      </main>
+    );
+  }
 }

@@ -5,6 +5,7 @@ import styles from './App.module.css';
 import Dashboard from './pages/dashboard/Dashboard';
 import Password from './pages/Password/Password';
 import AddCredential from './pages/AddCredentials/AddCredentials';
+import SearchCredential from './pages/SearchCredential/SearchCredential';
 
 function App(): JSX.Element {
   return (
@@ -25,7 +26,7 @@ function App(): JSX.Element {
             <AddCredential />
           </Route>
           <Route path="/searchCredential">
-            <AddCredential />
+            <SearchCredential />
           </Route>
           <Route exact path="/">
             <Dashboard />

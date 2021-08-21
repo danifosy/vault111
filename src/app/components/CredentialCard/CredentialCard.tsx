@@ -22,6 +22,14 @@ export default function CredentialCard({
           <tr className={styles.cardBox_info}>{credentialData.username}</tr>
           <tr className={styles.cardBox_info}>{credentialData.password}</tr>
         </td>
+        <td>
+          <tr>
+            <img
+              src="assets/deleteButton.svg"
+              className={styles.cardBox_deleteButton}
+            />
+          </tr>
+        </td>
       </table>
     </main>
   );

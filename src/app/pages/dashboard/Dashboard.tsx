@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import type { Credential } from '../../../types';
+
 import CredentialCard from '../../components/CredentialCard/CredentialCard';
 
 export default function Dashboard(): JSX.Element {
@@ -10,17 +11,18 @@ export default function Dashboard(): JSX.Element {
   // inside useEffect we want to fetch then set
   // fetch credentials, then setCredentials to fetched credentials
 
+  async function fetchCredentials() {
+    const response = await fetch('/api/credentials', {
+      headers: {
+        Authorization: masterpassword,
+      },
+    });
+    const credentialsResult = await response.json();
+    setCredentials(credentialsResult);
+  }
+
   //dependency array
   useEffect(() => {
-    async function fetchCredentials() {
-      const response = await fetch('/api/credentials', {
-        headers: {
-          Authorization: masterpassword,
-        },
-      });
-      const credentialsResult = await response.json();
-      setCredentials(credentialsResult);
-    }
     fetchCredentials();
     if (!masterpassword) {
       setCredentials([]);
@@ -33,7 +35,12 @@ export default function Dashboard(): JSX.Element {
       <main>
         {credentials.length !== 0 &&
           credentials.map((credential) => (
-            <CredentialCard credentialData={credential} />
+            <CredentialCard
+              credentialData={credential}
+              onChange={() => {
+                fetchCredentials();
+              }}
+            />
           ))}
         <div className={styles.buttonWrapper}>
           <Link to="/addCredential">

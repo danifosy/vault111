@@ -40,6 +40,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a service</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="text"
             value={credential.service}
@@ -51,6 +52,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a username</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="text"
             value={credential.username}
@@ -62,6 +64,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a password</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="password"
             value={credential.password}

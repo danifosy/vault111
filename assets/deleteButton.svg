@@ -1,20 +1,20 @@
-<svg width="45" height="44" viewBox="0 0 45 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M29.6962 4.04395C33.5622 4.04395 36.6962 7.17796 36.6962 11.0439V24.9561C36.6962 28.8221 33.5622 31.9561 29.6962 31.9561H15.7841C11.9181 31.9561 8.78406 28.8221 8.78406 24.9561V4.04395L29.6962 4.04395Z" fill="url(#paint0_linear)"/>
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 7C0 3.13401 3.13401 0 7 0H23C26.866 0 30 3.13401 30 7V23C30 26.866 26.866 30 23 30H0V7Z" fill="url(#paint0_linear)"/>
 <g filter="url(#filter0_d)">
-<path d="M30.2401 10.5L15.2401 25.5M30.7089 25.0312L15.7089 10.0312" stroke="#CBD8D2" stroke-width="4" stroke-linecap="round"/>
+<path d="M8.36396 8.36396L21.0919 21.0919M20.6941 7.96621L7.96621 20.6941" stroke="#CBD8D2" stroke-width="2" stroke-linecap="round"/>
 </g>
 <defs>
-<filter id="filter0_d" x="0.911682" y="0.171574" width="43.6569" height="43.6569" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d" x="4.96622" y="5.96621" width="19.1257" height="19.1257" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="1"/>
 <feComposite in2="hardAlpha" operator="out"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
 </filter>
-<linearGradient id="paint0_linear" x1="36.6962" y1="18" x2="8.78406" y2="18" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear" x1="15" y1="0" x2="15" y2="30" gradientUnits="userSpaceOnUse">
 <stop offset="0.0001" stop-color="#C9DDFA" stop-opacity="0.0416667"/>
 <stop offset="0.0002" stop-color="#8F9D97"/>
 <stop offset="1" stop-color="#747F91"/>

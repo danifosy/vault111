@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Credential } from '../../../types';
 import styles from './AddCredentials.module.css';
 
@@ -86,6 +87,12 @@ export default function AddCredential(): JSX.Element {
           Submit
         </button>
       </form>
+      <Link to="/">
+        <img
+          src=" assets/BackButtonLeft.svg"
+          className={styles.addNewForm_back}
+        />
+      </Link>
     </>
   );
 }

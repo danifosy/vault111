@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import type { Credential } from '../../../types';
 import styles from './SearchCredential.module.css';
 
@@ -68,6 +69,12 @@ export default function SearchCredential(): JSX.Element {
             }}
           />
         ))}
+      <Link to="/">
+        <img
+          src=" assets/BackButtonRight.svg"
+          className={styles.searchForm_back}
+        />
+      </Link>
     </>
   );
 }

@@ -9,7 +9,7 @@ export default function SearchCredential(): JSX.Element {
   const [masterpassword, setMasterpassword] = useState('');
   const [searchString, setSearchString] = useState('');
 
-  async function fetchCredentials(serviceNameToLookFor: string) {
+  async function fetchCredentials() {
     const response = await fetch('/api/credentials', {
       method: 'GET',
       headers: {
@@ -19,7 +19,7 @@ export default function SearchCredential(): JSX.Element {
     const credentialSearchResult: Credential[] = await response.json();
 
     const filteredCredentials = credentialSearchResult.filter(
-      (credential) => credential.service.indexOf(serviceNameToLookFor) !== -1
+      (credential) => credential.service.indexOf(searchString) !== -1
     );
 
     setCredentials(filteredCredentials);
@@ -31,7 +31,7 @@ export default function SearchCredential(): JSX.Element {
         className={styles.searchForm}
         onSubmit={(event) => {
           event?.preventDefault();
-          fetchCredentials(searchString);
+          fetchCredentials();
         }}
       >
         <label>
@@ -61,7 +61,12 @@ export default function SearchCredential(): JSX.Element {
 
       {credentials.length !== 0 &&
         credentials.map((credential) => (
-          <CredentialCard credentialData={credential} />
+          <CredentialCard
+            credentialData={credential}
+            onChange={() => {
+              fetchCredentials();
+            }}
+          />
         ))}
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Credential } from '../../../types';
 import styles from './AddCredentials.module.css';
 
@@ -40,6 +41,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a service</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="text"
             value={credential.service}
@@ -51,6 +53,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a username</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="text"
             value={credential.username}
@@ -62,6 +65,7 @@ export default function AddCredential(): JSX.Element {
         <p>Add a password</p>
         <label>
           <input
+            required
             className={styles.addNewForm_input}
             type="password"
             value={credential.password}
@@ -83,6 +87,12 @@ export default function AddCredential(): JSX.Element {
           Submit
         </button>
       </form>
+      <Link to="/">
+        <img
+          src=" assets/BackButtonLeft.svg"
+          className={styles.addNewForm_back}
+        />
+      </Link>
     </>
   );
 }

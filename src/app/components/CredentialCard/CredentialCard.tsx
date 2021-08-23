@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Credential } from '../../../types';
 import styles from './CredentialCard.module.css';
 
@@ -33,6 +34,14 @@ export default function CredentialCard({
       <tr className={styles.cardBox_info_container}>
         <td className={styles.cardBox_names}>password</td>
         <td className={styles.cardBox_info}>{credentialData.password}</td>
+        <td>
+          <Link to="/credential/:service/EditCredential">
+            <img
+              src="assets/EditButton.svg"
+              className={styles.cardBox_editButton}
+            />
+          </Link>
+        </td>
         <td>
           <button
             onClick={() => {
